@@ -1,13 +1,11 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace;
+namespace NotificationChannels\MandrillTemplate;
 
-use NotificationChannels\:channel_namespace\Exceptions\CouldNotSendNotification;
-use NotificationChannels\:channel_namespace\Events\MessageWasSent;
-use NotificationChannels\:channel_namespace\Events\SendingMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\MandrillTemplate\Exceptions\CouldNotSendNotification;
 
-class :service_nameChannel
+class MandrillTemplateChannel
 {
     public function __construct()
     {
@@ -27,7 +25,7 @@ class :service_nameChannel
         //$response = [a call to the api of your notification send]
 
 //        if ($response->error) { // replace this by the code need to check for errors
-//            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-//        }
+        //            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
+        //        }
     }
 }

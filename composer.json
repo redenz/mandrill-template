@@ -1,20 +1,21 @@
 {
-    "name": "laravel-notification-channels/:package_name",
-    "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "name": "redenz/mandrill-template",
+    "description": "Mandrill Template email driver",
+    "homepage": "https://github.com/redenz/mandrilltemplate",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Redenz",
+            "email": "redenz@gmail.com",
+            "homepage": "https://github.com/redenz/",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.6.4",
         "illuminate/notifications": "^5.3",
-        "illuminate/support": "^5.1|^5.2|^5.3"
+        "illuminate/support": "^5.1|^5.2|^5.3",
+         "weblee/mandrill": "dev-master"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
@@ -22,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\MandrillTemplate\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\MandrillTemplate\\Test\\": "tests"
         }
     },
     "scripts": {
