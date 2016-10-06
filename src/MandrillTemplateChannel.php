@@ -7,9 +7,10 @@ use NotificationChannels\MandrillTemplate\Exceptions\CouldNotSendNotification;
 
 class MandrillTemplateChannel
 {
-    public function __construct()
+    private $mandrill;
+    public function __construct(Mail $mandrill)
     {
-        // Initialisation code here
+        $this->mandrill = $mandrill;
     }
 
     /**
@@ -22,10 +23,6 @@ class MandrillTemplateChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        //$response = [a call to the api of your notification send]
-
-//        if ($response->error) { // replace this by the code need to check for errors
-        //            throw CouldNotSendNotification::serviceRespondedWithAnError($response);
-        //        }
+        Log::info("Mandrill is ", [$mandrill, $notifiable, $notification]);
     }
 }

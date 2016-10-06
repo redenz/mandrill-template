@@ -17,12 +17,10 @@ class MandrillTemplateServiceProvider extends ServiceProvider
         $this->app->when(MandrillTemplateChannel::class)
             ->needs(Mail::class)
             ->give(function () {
-                $mandrillConfig = config('broadcasting.connections.pusher');
+                $mandrillConfig = config('broadcasting.connections.mandrill');
 
-                return new Pusher(
-                    $pusherConfig['key'],
-                    $pusherConfig['secret'],
-                    $pusherConfig['app_id']
+                return new Mail(
+                    $mandrillConfig['key']
                 );
             });
 
