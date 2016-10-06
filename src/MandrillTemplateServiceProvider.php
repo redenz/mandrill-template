@@ -3,6 +3,7 @@
 namespace NotificationChannels\MandrillTemplate;
 
 use Illuminate\Support\ServiceProvider;
+use NotificationChannels\MandrillTemplate\MandrillTemplateChannel;
 use Weblee\Mandrill\Mail;
 
 class MandrillTemplateServiceProvider extends ServiceProvider
@@ -18,10 +19,7 @@ class MandrillTemplateServiceProvider extends ServiceProvider
             ->needs(Mail::class)
             ->give(function () {
                 $mandrillConfig = config('broadcasting.connections.mandrill');
-
-                return new Mail(
-                    $mandrillConfig['key']
-                );
+                return new Mail($mandrillConfig['key']);
             });
 
     }
