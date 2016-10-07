@@ -3,7 +3,6 @@
 namespace NotificationChannels\MandrillTemplate;
 
 use Illuminate\Notifications\Notification;
-use Log;
 use NotificationChannels\MandrillTemplate\Exceptions\CouldNotSendNotification;
 use Weblee\Mandrill\Mail;
 
@@ -28,7 +27,6 @@ class MandrillTemplateChannel
         $message = $notification->toMandrillTemplate($notifiable)->toArray();
 
         if (!$message['template']) {
-            Log::info("Not sending Mandrill email template not defined");
             throw new \Exception("Mandrill template name is required");
         }
 
