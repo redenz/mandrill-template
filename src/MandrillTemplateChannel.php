@@ -25,21 +25,29 @@ class MandrillTemplateChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (!$notification->template) {
+        $message = $notification->toMandrillTemplate($notifiable)->toArray();
+
+        if (!$message['template']) {
             Log::info("Not sending Mandrill email template not defined");
             throw new \Exception("Mandrill template name is required");
         }
-        $message = [
-            'to' => [
-                [
+
+        $formData = collect($message['data'])->map(function ($item, $key) {
+            return ['name' => $key, 'content' => $item];
+        })->values()->toArray();
+
+        $data = array(
+            'to' => array(
+                array(
                     'email' => $notifiable->email,
                     'name' => $notifiable->displayName,
                     'type' => 'to',
-                ],
-            ],
-            'global_merge_vars' => [$notifiable->data],
-        ];
-        $response = $this->mandrill->messages()->sendTemplate($notification->template, [], $message, false);
-        Log::info("Response", [$response]);
+                ),
+            ),
+            'merge' => true,
+            'global_merge_vars' => $formData,
+        );
+
+        $response = $this->mandrill->messages()->sendTemplate($message['template'], [], $data, false);
     }
 }

@@ -44,11 +44,19 @@ class MandrillTemplateMessage
      *
      * @return $this
      */
-    public function tempate($template)
+    public function template($template)
     {
         $this->template = $template;
 
         return $this;
+    }
+
+    public function toArray()
+    {
+        return [
+            'template' => $this->template,
+            'data' => $this->data,
+        ];
     }
 
 }
